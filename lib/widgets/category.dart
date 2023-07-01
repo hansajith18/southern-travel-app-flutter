@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../constraints/colors.dart';
 
-class Category extends StatelessWidget {
+class AttractionItem extends StatelessWidget {
   final String image;
   final String title;
 
-  const Category({super.key, required this.image, required this.title});
+  const AttractionItem({super.key, required this.image, required this.title});
 
   @override
   Widget build(BuildContext context) {

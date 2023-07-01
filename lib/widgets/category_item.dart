@@ -116,8 +116,8 @@ class CategoryItem extends StatelessWidget {
                     const SizedBox(
                       height: 4.0,
                     ),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         SizedBox(
                           width: 4.0,
                         ),

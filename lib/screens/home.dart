@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import '/widgets/app_bar.dart';
 import '/widgets/tour_package.dart';
 
@@ -6,8 +8,29 @@ import '../constraints/colors.dart';
 import '../widgets/category_item.dart';
 import '../widgets/category.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String _scanBarcode = "";
+
+  Future<void> scanBarcodeNormal() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+
+    barcodeScanRes = await FlutterBarcodeScanner.scanBarcode("#42f5ef", "Cancel", true, ScanMode.QR);
+    if (kDebugMode) {
+      print(barcodeScanRes);
+    }
+
+    setState(() {
+      _scanBarcode = barcodeScanRes;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +41,10 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor:
-              selectedIndex == 0 ? Colors.amber[800] : Colors.blueGrey,
-          tooltip: 'Increment Counter',
-          child: const Icon(Icons.home),
+          onPressed: scanBarcodeNormal,
+          backgroundColor: selectedIndex == 0 ? Colors.amber[800] : Colors.blueGrey,
+          tooltip: 'Scan QR code',
+          child: const Icon(Icons.qr_code_scanner),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -63,55 +85,54 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SizedBox(
+      body: const SizedBox(
         width: double.infinity,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: SafeArea(
             child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 10.0, left: 15.0, right: 15.0),
+              padding: EdgeInsets.only(top: 10.0, left: 15.0, right: 15.0),
               child: Column(
                 children: [
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: const [
-                        Category(
+                      children: [
+                        AttractionItem(
                           image: "assets/icons/MOUNTAIN.svg",
                           title: "Mountain",
                         ),
                         SizedBox(
                           width: 12.0,
                         ),
-                        Category(
+                        AttractionItem(
                           image: "assets/icons/WATERFALL.svg",
                           title: "Waterfall",
                         ),
                         SizedBox(
                           width: 12.0,
                         ),
-                        Category(
+                        AttractionItem(
                           image: "assets/icons/RIVER.svg",
                           title: "River",
                         ),
                         SizedBox(
                           width: 12.0,
                         ),
-                        Category(
+                        AttractionItem(
                           image: "assets/icons/FOREST.svg",
                           title: "Forest",
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 22.0,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: const [
+                      children: [
                         CategoryItem(
                           image: 'assets/images/Rinjani.png',
                           price: '36',
@@ -130,12 +151,12 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 36.0,
                   ),
                   Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         "Popular Destination",
                         style: TextStyle(
@@ -168,51 +189,57 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 22.0,
                   ),
-                  const TourPackage(
+                  TourPackage(
                     address: "Komodo Island, Indonesia",
-                    desc:
-                        "This exceptional beach gets its striking color from microscopic animals called...",
+                    desc: "This exceptional beach gets its striking color from microscopic animals called...",
                     price: 53,
                     title: "The Pink Beach",
                     image: "assets/images/Pink.png",
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 2.0,
                   ),
-                  const TourPackage(
+                  TourPackage(
                     address: "Bali, Indonesia",
-                    desc:
-                        "A Meru tower or pelinggih meru is the principal shrine of a Balinese temple. It is a wooden..",
+                    desc: "A Meru tower or pelinggih meru is the principal shrine of a Balinese temple. It is a wooden..",
                     price: 48,
                     title: "Meru Tower",
                     image: "assets/images/Meru.png",
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 2.0,
                   ),
-                  const TourPackage(
+                  TourPackage(
                     address: "South Sulawesi, Indonesia",
-                    desc:
-                        "Toraja land is one the tourist destination area in indonesia that must be visited because it..",
+                    desc: "Toraja land is one the tourist destination area in indonesia that must be visited because it..",
                     price: 32,
                     title: "Toraja Land",
                     image: "assets/images/Toraja.png",
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 2.0,
                   ),
-                  const TourPackage(
+                  TourPackage(
                     address: "Komodo Island, Indonesia",
-                    desc:
-                        "This exceptional beach gets its striking color from microscopic animals called...",
+                    desc: "This exceptional beach gets its striking color from microscopic animals called...",
                     price: 53,
                     title: "The Pink Beach",
                     image: "assets/images/Pink.png",
                   ),
-                  const SizedBox(
+                  SizedBox(
+                    height: 2.0,
+                  ),
+                  TourPackage(
+                    address: "Bali, Indonesia",
+                    desc: "A Meru tower or pelinggih meru is the principal shrine of a Balinese temple. It is a wooden..",
+                    price: 48,
+                    title: "Meru Tower",
+                    image: "assets/images/Meru.png",
+                  ),
+                  SizedBox(
                     height: 22.0,
                   )
                 ],
