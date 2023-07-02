@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "965259652279",
+    "firebase_url": "https://sothern-tour-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sothern-tour-app",
+    "storage_bucket": "sothern-tour-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965259652279:android:1eb8eeb74e649aeeb53132",
+        "android_client_info": {
+          "package_name": "com.example.southern_tour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965259652279-l09i6o882s4iot1ndq7agpn1192kd3rl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBImkPW1LEG1OcpPmIFwm-Yn_U-Zx-0gTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965259652279-l09i6o882s4iot1ndq7agpn1192kd3rl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "965259652279-mcku1ssvg18h0tvpkl9282tth6b3rm6g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.southernTour"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
